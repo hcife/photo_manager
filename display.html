@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>展示-战士之家</title>
+    <style type="text/css">
+        body, ul, li, h3 {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font: bold 12px "微软雅黑";
+        }
+
+        #box {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        #box li {
+            position: absolute;
+            background: #fff;
+            border: solid 1px #ccc;
+            text-align: center;
+            padding: 10px;
+            left: 0;
+            top: 0;
+        }
+
+        h3 {
+            padding-top: 8px;
+        }
+
+        img {
+            width: 200px;
+            height: auto;
+            display: block;
+            border: 0;
+        }
+
+        li {
+            -webkit-transition: all .7s ease-out .1s;
+            -moz-transition: all .7s ease-out;
+            -o-transition: all .7s ease-out .1s;
+            transition: all .7s ease-out .1s;
+        }
+
+        #loading {
+            display: none;
+            line-height: 30px;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            height: 30px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            opacity: 0.8;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="public/data/img.js"></script>
+</head>
+<body>
+<ul id="box">
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
+
+        <h3>图片标题</h3>
+    </li>
+</ul>
+<div id="loading">正在加载……</div>
+
+<script>
+    var margin = 10;
+    var li = $("li");
+    $('img').css({width:(screen.width*0.8-118)/4+'px'});
+    var li_W = li[0].offsetWidth + margin;
+    function refresh() {
+        li = $("li");
+        var h = [];
+        var n = document.documentElement.offsetWidth / li_W | 0;
+        for (var i = 0; i < li.length; i++) {
+            li_H = li[i].offsetHeight;
+            if (i < n) {
+                h[i] = li_H;
+                li.eq(i).css("top", 0);
+                li.eq(i).css("left", i * li_W);
+            }
+            else {
+                min_H = Math.min.apply(null, h);
+                minKey = getarraykey(h, min_H);
+                h[minKey] += li_H + margin;
+                li.eq(i).css("top", min_H + margin);
+                li.eq(i).css("left", minKey * li_W);
+            }
+            $("h3").eq(i).text("编号：" + i + "，高度：" + li_H);
+        }
+    }
+
+    function getarraykey(s, v) {
+        for (var k in s) {
+            if (s[k] == v) {
+                return k;
+            }
+        }
+    }
+
+    window.onload = function () {
+        refresh();
+    };
+
+    window.onresize = function () {
+        refresh();
+    };
+
+    var i = 1;
+    var order = 0;
+    function getMore() {
+        if (order < photo.length) {
+            $("#loading").show();
+            var url = photo[order++].url;
+            var html = "<li style='opacity:1'><a href='#'><img src=" + url + " ></a><h3>图片标题</h3></li>";
+            $("#box").append(html);
+            $('img').css({width:(screen.width*0.8-118)/4+'px'});
+            $("#loading").hide();
+        }
+        refresh();
+        i = 1;
+    }
+
+    $(window).bind("scroll", function () {
+        if ($(document).scrollTop() + $(window).height() > $(document).height() - 10 && i == 1) {
+            i = 0;
+            getMore();
+        }
+    });
+</script>
+</body>
+</html>
+
