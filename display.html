@@ -62,43 +62,14 @@
     <script src="public/data/img.js"></script>
 </head>
 <body>
-<ul id="box">
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
 
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-    <li><a href="#"><img src="public\img\7541ee246b600c332ea180161a4c510fd8f9a132.jpg"></a>
-
-        <h3>图片标题</h3>
-    </li>
-</ul>
+<ul id="box"></ul>
 <div id="loading">正在加载……</div>
 
 <script>
     var margin = 10;
-    var li = $("li");
-    $('img').css({width:(screen.width*0.8-118)/4+'px'});
-    var li_W = li[0].offsetWidth + margin;
+    var li;
+    var li_W = (screen.width * 0.8 - 118) / 4+32;
     function refresh() {
         li = $("li");
         var h = [];
@@ -130,7 +101,7 @@
     }
 
     window.onload = function () {
-        refresh();
+        getMore();
     };
 
     window.onresize = function () {
@@ -140,12 +111,14 @@
     var i = 1;
     var order = 0;
     function getMore() {
-        if (order < photo.length) {
+        for (var j = 0; j < 50, order < photo.length; j++, order++) {
             $("#loading").show();
-            var url = photo[order++].url;
+            var url = photo[order].url;
             var html = "<li style='opacity:1'><a href='#'><img src=" + url + " ></a><h3>图片标题</h3></li>";
             $("#box").append(html);
-            $('img').css({width:(screen.width*0.8-118)/4+'px'});
+            $('img').css({
+                width: (screen.width * 0.8 - 118) / 4 + 'px'
+            });
             $("#loading").hide();
         }
         refresh();
