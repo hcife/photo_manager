@@ -1,0 +1,91 @@
+body, ul, li, h3 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font: bold 12px "微软雅黑";
+}
+
+#nav {
+    position: absolute;
+    height: 15%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #99CCFF;
+    text-align: center;
+}
+
+#nav ul {
+    width: 30%;
+    height: 100%;
+    margin: 0 auto;
+} 
+#nav li {
+    width: 30%;
+    margin: auto 1% auto 1%;
+    height: 100%;
+    color: white;
+    font-size: 20px;
+    display: block;
+    float: left;
+}
+
+#nav a {
+    margin: auto 0 auto 0;
+}
+
+#box {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#box li {
+    position: absolute;
+    background: #fff;
+    border: solid 1px #ccc;
+    text-align: center;
+    padding: 10px;
+    left: 0;
+    top: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+h3 {
+    padding-top: 8px;
+}
+
+img {
+    width: 200px;
+    height: auto;
+    display: block;
+    border: 0;
+}
+
+li {
+    -webkit-transition: all .7s ease-out .1s;
+    -moz-transition: all .7s ease-out;
+    -o-transition: all .7s ease-out .1s;
+    transition: all .7s ease-out .1s;
+}
+
+#loading {
+    display: none;
+    line-height: 30px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    height: 30px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    opacity: 0.8;
+}
+
+li.active {
+    background-color: white;
+    color: #99CCFF;
+}

@@ -323,7 +323,7 @@ jQuery(function() {
                 break;
 
             case 'uploading':
-                $('#filePicker2').addClass('element-invisible');
+                $('#filePicker2');
                 $progress.show();
                 $upload.text('暂停上传');
                 break;
@@ -352,6 +352,7 @@ jQuery(function() {
                     state = 'done';
                     location.reload();
                 }
+                $upload.removeClass('disabled');
                 break;
         }
 
