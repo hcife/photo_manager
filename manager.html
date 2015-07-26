@@ -3,14 +3,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>图片管理中心 - 战士之家</title>
-	<link rel="stylesheet" type="text/css" href="public/css/webuploader.css">
+	<link rel="stylesheet" type="text/css" href="public/css/show.css">
 	<link rel="stylesheet" type="text/css" href="public/css/style.css">
 	<link rel="stylesheet" type="text/css" href="public/css/demo.css">
-	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="public/css/webuploader.css">
+
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="public/js/webuploader.js"></script>
 </head>
 <body>
-
+<div id="other"></div>
+<div id="nav">
+    <ul>
+        <li id="pal" class="active"><a href="#">仙剑奇侠传</a></li>
+        <li id="swd"><a href="#">轩辕剑</a></li>
+        <li id="gj"><a href="#">古剑奇谭</a></li>
+    </ul>
+</div>
 
 <div id="uploader" class="wu-example">
     <div class="queueList">
@@ -29,6 +38,9 @@
         </div>
     </div>
 </div>
+
+<ul id="box"></ul>
+<div id="loading">正在加载……</div>
 
 <script type="text/javascript" src="public/js/demo.js"></script>
 

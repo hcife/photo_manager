@@ -173,13 +173,14 @@ if ( $done ) {
     @fclose($out);
 }
 
+$folder=$_GET['t'];
 $baseURL='upload/';
-$data=file_get_contents('public/data/img.js');
+$data=file_get_contents('public/data/'.$folder.'.js');
 $data=json_decode($data, true);
 $l=count($data['photo']);
 $data['photo'][$l]['url']=$baseURL.$fileName;
 $data=json_encode($data);
-file_put_contents('public/data/img.js', $data)
+file_put_contents('public/data/'.$folder.'.js', $data);
 
 // Return Success JSON-RPC response
 die('{"jsonrpc" : "2.0", "result" : null, "id" : "id"}');
