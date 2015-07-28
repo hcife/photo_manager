@@ -1,4 +1,4 @@
-jQuery(function() {
+
     var margin = 5,
         li,
         li_W = (screen.width * 0.8 - 30) / 4,
@@ -28,10 +28,11 @@ jQuery(function() {
     }
 
     function refresh() {
-        other.css('height', (screen.availHeight - 50 > 0) ? screen.availHeight - 50 : 0);
+        var dh=document.body.scrollHeight - 50;
+        other.css('height', dh > 0 ? dh : 0);
         li = $('#box li');
         var h = [];
-        var n = screen.availWidth / (li_W + 10) | 0;
+        var n = document.body.offsetWidth / (li_W + 10) | 0;
         for (var i = 0; i < li.length; i++) {
             var li_H = li.eq(i).find('img')[0].height;
             if (i < n) {
@@ -75,16 +76,21 @@ jQuery(function() {
 
     function zoom() {
         $('#box img').click(function() {
-            image[0].src = $(this)[0].src;
-            if(image[0].width<image[0].height)
-            {
-                image.css({'height':screen.availHeight,'width':'auto'});
+            var imageDom =image[0],
+            width = imageDom.width;
+            imageDom.src = $(this)[0].src;
+            
+            if (imageDom.width < imageDom.height) {
+                imageDom.className='h';
+                imageDom.style.left = (document.body.offsetWidth - width) / 2 + 'px';
+            } else {
+                imageDom.className='w';
             }
             image.css({
                 'top': scrollTop + 50,
-                'z-index': 2
-            }).
-            css('opacity', 1);
+                'z-index': 2,
+                'visibility': 'visible'
+            });
             other.css({
                 'top': scrollTop + 50,
                 'z-index': 1
@@ -100,9 +106,11 @@ jQuery(function() {
         $(this).addClass('active');
         getData(baseUrl + option + '.js');
     });
-    
     other.click(function() {
-        image.css('opacity', 0).css('z-index', -1);
+        image.css({
+            'z-index': -1,
+            'visibility': 'hidden'
+        });
         $(this).css({
             'opacity': 0
         }).css({
@@ -117,4 +125,3 @@ jQuery(function() {
         $('#nav').css('top', scrollTop);
     };
     getData('public/data/pal.js');
-});
