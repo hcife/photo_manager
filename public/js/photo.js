@@ -70,13 +70,9 @@ function getMore() {
         });
         $('#loading').hide();
     }
-    setTimeout(function() {
-        zoom();
-        setTimeout(function() {
-            refresh();
-            i = 1;
-        }, 200);
-    }, 200);
+    zoom();
+    refresh();
+    i = 1;
 }
 
 function zoom() {
@@ -126,14 +122,10 @@ other.click(function() {
 window.onresize = function() {
     windowWidth = document.body.offsetWidth;
     windowHeight = document.body.scrollHeight;
-    setInterval(function() {
-        refresh();
-    }, 100);
+    refresh();
 };
 window.onscroll = function() {
     scrollTop = document.body.scrollTop;
     $('#nav').css('top', scrollTop);
 };
-setInterval(function() {
-    getData('public/data/pal.js');
-}, 100);
+getData('public/data/pal.js');
