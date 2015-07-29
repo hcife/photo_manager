@@ -43,7 +43,9 @@ jQuery(function() {
         order = 0,
         scrollTop = 0,
         image = $('#large'),
-        other = $('#other');
+        other = $('#other'),
+        windowWidth = document.body.offsetWidth,
+        windowHeight = document.body.scrollHeight;
     // 当有文件添加进来时执行，负责view的创建
     function addFile(file) {
         var $li = $('<li id="' + file.id + '">' + '<p class="title">' + file.name + '</p>' + '<p class="imgWrap"></p>' + '<p class="progress"><span></span></p>' + '</li>'),
@@ -278,10 +280,11 @@ jQuery(function() {
     }
 
     function refresh() {
-        other.css('height', (screen.availHeight - 50 > 0) ? screen.availHeight - 50 : 0);
+        var dh = windowHeight - 50;
+        other.css('height', dh > 0 ? dh : 0);
         li = $('#box li');
         var h = [];
-        var n = screen.availWidth / (li_W + 10) | 0;
+        var n = windowWidth / (li_W + 10) | 0;
         for (var i = 0; i < li.length; i++) {
             var li_H = li.eq(i).find('img')[0].height;
             if (i < n) {
@@ -318,26 +321,36 @@ jQuery(function() {
             });
             $('#loading').hide();
         }
-        zoom();
-        refresh();
-        i = 1;
+        setTimeout(function() {
+            zoom();
+            setTimeout(function() {
+                refresh();
+                i = 1;
+            }, 200);
+        }, 200);
     }
 
     function zoom() {
         $('#box img').click(function() {
-            image[0].src = $(this)[0].src;
-            if(image[0].width<image[0].height)
-            {
-                image.css({'height':screen.availHeight,'width':'auto'});
+            var imageDom = image[0],
+                width = imageDom.width,
+                left = (windowWidth - width) / 2 + 'px';
+            imageDom.src = $(this)[0].src;
+            if (imageDom.width < imageDom.height) {
+                imageDom.className = 'h';
+                imageDom.style.left = left;
+            } else {
+                imageDom.style.left = '';
+                imageDom.className = 'w';
             }
             image.css({
                 'top': scrollTop + 50,
-                'z-index': 2
-            }).
-            css('opacity', 1);
+                'z-index': 2,
+                'visibility': 'visible'
+            });
             other.css({
-                'top': scrollTop + 50,
-                'z-index': 1
+                'z-index': 1,
+                'height': windowHeight
             }).css('opacity', 0.5);
         });
     }
@@ -442,16 +455,6 @@ jQuery(function() {
     });
     $upload.addClass('state-' + state);
     updateTotalProgress();
-    $('#nav li').click(function() {
-        order = 0;
-        var option = this.id;
-        var baseUrl = 'public/data/';
-        $('#box').empty();
-        $('#nav li').removeClass('active');
-        $(this).addClass('active');
-        getData(baseUrl + option + '.js');
-        adjust();
-    });
     if (!WebUploader.Uploader.support()) {
         alert('Web Uploader 不支持您的浏览器！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
         throw new Error('WebUploader does not support the browser you are using.');
@@ -464,9 +467,13 @@ jQuery(function() {
         $('#nav li').removeClass('active');
         $(this).addClass('active');
         getData(baseUrl + option + '.js');
+        adjust();
     });
     other.click(function() {
-        image.css('opacity', 0).css('z-index', -1);
+        image.css({
+            'z-index': -1,
+            'visibility': 'hidden'
+        });
         $(this).css({
             'opacity': 0
         }).css({
@@ -474,11 +481,17 @@ jQuery(function() {
         });
     });
     window.onresize = function() {
-        refresh();
+        windowWidth = document.body.offsetWidth;
+        windowHeight = document.body.scrollHeight;
+        setInterval(function() {
+            refresh();
+        }, 200);
     };
     window.onscroll = function() {
         scrollTop = document.body.scrollTop;
         $('#nav').css('top', scrollTop);
     };
-    getData('public/data/pal.js');
+    setInterval(function() {
+        getData('public/data/pal.js');
+    }, 200);
 });
