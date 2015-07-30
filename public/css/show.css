@@ -71,21 +71,18 @@ body {
     background-color: #00b7ee;
     text-align: center;
     margin-bottom: 10px;
-    z-index: 2;
-}
-
-#nav ul, li {
+    z-index: 10;
     list-style: none;
 }
 
 #nav ul {
-    width: 312px;
+    display: block;
     margin: 0 auto;
 }
 
 #nav li {
     display: block;
-    float: left;
+    position: absolute;
 }
 
 #nav a {

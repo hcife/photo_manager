@@ -176,7 +176,7 @@ if ( $done ) {
 $folder=$_GET['t'];
 $baseURL='upload/';
 $data=file_get_contents('public/data/'.$folder.'.js');
-$data=json_decode($data, true);
+$data=json_decode($data,true);
 $l=count($data['photo']);
 $data['photo'][$l]['url']=$baseURL.$fileName;
 $data=json_encode($data);
