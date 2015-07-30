@@ -332,26 +332,28 @@ jQuery(function() {
 
     function zoom() {
         $('#box img').click(function() {
-            var imageDom = image[0],
-                width = imageDom.width,
-                left = (windowWidth - width) / 2 + 'px';
+            var imageDom = image[0];
             imageDom.src = $(this)[0].src;
-            if (imageDom.width < imageDom.height) {
-                imageDom.className = 'h';
-                imageDom.style.left = left;
-            } else {
-                imageDom.style.left = '';
-                imageDom.className = 'w';
-            }
-            image.css({
-                'top': scrollTop + 50,
-                'z-index': 2,
-                'visibility': 'visible'
-            });
-            other.css({
-                'z-index': 1,
-                'height': windowHeight
-            }).css('opacity', 0.5);
+            setTimeout(function() {
+                var width = imageDom.width,
+                    left = (windowWidth - width) / 2 + 'px';
+                if (imageDom.width < imageDom.height) {
+                    imageDom.className = 'h';
+                    imageDom.style.left = left;
+                } else {
+                    imageDom.style.left = '';
+                    imageDom.className = 'w';
+                }
+                image.css({
+                    'top': scrollTop + 50,
+                    'z-index': 2,
+                    'visibility': 'visible'
+                });
+                other.css({
+                    'z-index': 1,
+                    'height': windowHeight
+                }).css('opacity', 0.5);
+            }, 100);
         });
     }
 
