@@ -129,7 +129,8 @@ jQuery(function() {
     window.onresize = function() {
         windowWidth = document.body.offsetWidth;
         windowHeight = document.body.scrollHeight;
-        setInterval(function() {
+        $('#nav ul')[0].style.left = (document.body.offsetWidth - 270) / 2 + 'px';
+        setTimeout(function() {
             refresh();
         }, 100);
     };
@@ -137,7 +138,7 @@ jQuery(function() {
         scrollTop = document.body.scrollTop;
         $('#nav').css('top', scrollTop);
     };
-    setInterval(function() {
+    setTimeout(function() {
         getData('public/data/pal.js');
     }, 100);
 });

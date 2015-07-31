@@ -76,8 +76,12 @@ body {
 }
 
 #nav ul {
+    position: absolute;
     display: block;
-    margin: 0 auto;
+    margin: 0;
+    width: 270px;
+    height: 100%;
+    padding: 0;
 }
 
 #nav li {
