@@ -75,4 +75,4 @@ $RECYCLE.BIN/
 *.lnk
 
 # WebStorm project files
-.idea
+.idea/

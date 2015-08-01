@@ -336,23 +336,19 @@ jQuery(function() {
             imageDom.src = $(this)[0].src;
             setTimeout(function() {
                 var width = imageDom.width,
-                    left = (windowWidth - width) / 2 + 'px';
+                    left = windowWidth * 0.6 - width / 2 + 'px';
                 if (imageDom.width < imageDom.height) {
-                    imageDom.className = 'h';
+                    imageDom.className = 'h1';
                     imageDom.style.left = left;
                 } else {
                     imageDom.style.left = '';
-                    imageDom.className = 'w';
+                    imageDom.className = 'w1';
                 }
                 edit.css({
                     'top': scrollTop + 50,
                     'z-index': 2,
-                    'visibility': 'visible'
+                    'opacity': 1
                 });
-                other.css({
-                    'z-index': 1,
-                    'height': windowHeight
-                }).css('opacity', 0.5);
             }, 100);
         });
     }
@@ -474,12 +470,7 @@ jQuery(function() {
     other.click(function() {
         edit.css({
             'z-index': -1,
-            'visibility': 'hidden'
-        });
-        $(this).css({
             'opacity': 0
-        }).css({
-            'z-index': -1
         });
     });
     window.onresize = function() {
@@ -493,6 +484,7 @@ jQuery(function() {
     window.onscroll = function() {
         scrollTop = document.body.scrollTop;
         $('#nav').css('top', scrollTop);
+        $('#edit').css('top', scrollTop + 50);
     };
     setTimeout(function() {
         getData('public/data/pal.js');

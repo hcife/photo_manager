@@ -9,7 +9,8 @@ jQuery(function() {
         image = $('#large'),
         other = $('#other'),
         windowWidth = document.body.offsetWidth,
-        windowHeight = document.body.scrollHeight;
+        windowHeight = document.body.scrollHeight,
+        edit = $('#edit');
 
     function getData(imgUrl) {
         $.ajax({
@@ -64,7 +65,7 @@ jQuery(function() {
         for (var j = 0; j < 50 && order < photo.length; j++, order++) {
             $('#loading').show();
             var url = photo[order].url;
-            var html = '<li name='+order+'><a href="javascript:void(0)"><img src=' + url + ' ></a></li>';
+            var html = '<li name=' + order + '><a href="javascript:void(0)"><img src=' + url + ' ></a></li>';
             $('#box').append(html);
             $('#box img').css({
                 'width': li_W
@@ -82,27 +83,23 @@ jQuery(function() {
 
     function zoom() {
         $('#box img').click(function() {
-            var imageDom = image[0];
+            var imageDom = edit.find('img')[0];
             imageDom.src = $(this)[0].src;
             setTimeout(function() {
                 var width = imageDom.width,
                     left = (windowWidth - width) / 2 + 'px';
                 if (imageDom.width < imageDom.height) {
-                    imageDom.className = 'h';
+                    imageDom.className = 'h1';
                     imageDom.style.left = left;
                 } else {
                     imageDom.style.left = '';
                     imageDom.className = 'w';
                 }
-                image.css({
+                edit.css({
                     'top': scrollTop + 50,
                     'z-index': 2,
-                    'visibility': 'visible'
+                    'opacity': 1
                 });
-                other.css({
-                    'z-index': 1,
-                    'height': windowHeight
-                }).css('opacity', 0.5);
             }, 100);
         });
     }
@@ -116,14 +113,9 @@ jQuery(function() {
         getData(baseUrl + option + '.js');
     });
     other.click(function() {
-        image.css({
+        edit.css({
             'z-index': -1,
-            'visibility': 'hidden'
-        });
-        $(this).css({
             'opacity': 0
-        }).css({
-            'z-index': -1
         });
     });
     window.onresize = function() {
@@ -137,6 +129,7 @@ jQuery(function() {
     window.onscroll = function() {
         scrollTop = document.body.scrollTop;
         $('#nav').css('top', scrollTop);
+        $('#edit').css('top', scrollTop + 50);
     };
     setTimeout(function() {
         getData('public/data/pal.js');
