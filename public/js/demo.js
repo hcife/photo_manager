@@ -42,7 +42,7 @@ jQuery(function() {
         i = 1,
         order = 0,
         scrollTop = 0,
-        image = $('#large'),
+        edit = $('#edit'),
         other = $('#other'),
         windowWidth = document.body.offsetWidth,
         windowHeight = document.body.scrollHeight;
@@ -332,7 +332,7 @@ jQuery(function() {
 
     function zoom() {
         $('#box img').click(function() {
-            var imageDom = image[0];
+            var imageDom = edit.find('img')[0];
             imageDom.src = $(this)[0].src;
             setTimeout(function() {
                 var width = imageDom.width,
@@ -344,7 +344,7 @@ jQuery(function() {
                     imageDom.style.left = '';
                     imageDom.className = 'w';
                 }
-                image.css({
+                edit.css({
                     'top': scrollTop + 50,
                     'z-index': 2,
                     'visibility': 'visible'
@@ -472,7 +472,7 @@ jQuery(function() {
         adjust();
     });
     other.click(function() {
-        image.css({
+        edit.css({
             'z-index': -1,
             'visibility': 'hidden'
         });

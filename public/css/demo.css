@@ -7,21 +7,26 @@
     margin: 20px;
     border: 3px dashed #e6e6e6;
 }
+
 #uploader .queueList.filled {
     padding: 17px;
     margin: 0;
     border: 3px dashed transparent;
 }
+
 #uploader .queueList.webuploader-dnd-over {
     border: 3px dashed #999999;
 }
 
-#uploader p {margin: 0;}
+#uploader p {
+    margin: 0;
+}
 
 .element-invisible {
     position: absolute !important;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px,1px,1px,1px);
+    clip: rect(1px 1px 1px 1px);
+    /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
 }
 
 #uploader .placeholder {
@@ -60,10 +65,12 @@
     text-align: center;
     bottom: 20px;
 }
+
 #uploader .placeholder .flashTip a {
     color: #0785d1;
     text-decoration: none;
 }
+
 #uploader .placeholder .flashTip a:hover {
     text-decoration: underline;
 }
@@ -108,7 +115,7 @@
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow : ellipsis;
+    text-overflow: ellipsis;
     top: 5px;
     text-indent: 5px;
     text-align: left;
@@ -127,50 +134,50 @@
     background: none;
     -webkit-box-shadow: 0 0 0;
 }
+
 #uploader .filelist li p.progress span {
     display: none;
     overflow: hidden;
     width: 0;
     height: 100%;
     background: #1483d8 url(../img/progress.png) repeat-x;
-
     -webit-transition: width 200ms linear;
     -moz-transition: width 200ms linear;
     -o-transition: width 200ms linear;
     -ms-transition: width 200ms linear;
     transition: width 200ms linear;
-
     -webkit-animation: progressmove 2s linear infinite;
     -moz-animation: progressmove 2s linear infinite;
     -o-animation: progressmove 2s linear infinite;
     -ms-animation: progressmove 2s linear infinite;
     animation: progressmove 2s linear infinite;
-
     -webkit-transform: translateZ(0);
 }
 
 @-webkit-keyframes progressmove {
     0% {
-       background-position: 0 0;
+        background-position: 0 0;
     }
     100% {
-       background-position: 17px 0;
+        background-position: 17px 0;
     }
 }
+
 @-moz-keyframes progressmove {
     0% {
-       background-position: 0 0;
+        background-position: 0 0;
     }
     100% {
-       background-position: 17px 0;
+        background-position: 17px 0;
     }
 }
+
 @keyframes progressmove {
     0% {
-       background-position: 0 0;
+        background-position: 0 0;
     }
     100% {
-       background-position: 17px 0;
+        background-position: 17px 0;
     }
 }
 
@@ -182,13 +189,11 @@
     overflow: hidden;
     width: 110px;
     height: 110px;
-
     -webkit-transform-origin: 50% 50%;
     -moz-transform-origin: 50% 50%;
     -o-transform-origin: 50% 50%;
     -ms-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
-
     -webit-transition: 200ms ease-out;
     -moz-transition: 200ms ease-out;
     -o-transition: 200ms ease-out;
@@ -226,8 +231,8 @@
 #uploader .filelist div.file-panel {
     position: absolute;
     height: 0;
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
-    background: rgba( 0, 0, 0, 0.5 );
+    filter: progid: DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80000000', endColorstr='#80000000')\0;
+    background: rgba( 0, 0, 0, 0.5);
     width: 100%;
     top: 0;
     left: 0;
@@ -250,6 +255,7 @@
 #uploader .filelist div.file-panel span.rotateLeft {
     background-position: 0 -24px;
 }
+
 #uploader .filelist div.file-panel span.rotateLeft:hover {
     background-position: 0 0;
 }
@@ -257,6 +263,7 @@
 #uploader .filelist div.file-panel span.rotateRight {
     background-position: -24px -24px;
 }
+
 #uploader .filelist div.file-panel span.rotateRight:hover {
     background-position: -24px 0;
 }
@@ -264,6 +271,7 @@
 #uploader .filelist div.file-panel span.cancel {
     background-position: -48px -24px;
 }
+
 #uploader .filelist div.file-panel span.cancel:hover {
     background-position: -48px 0;
 }
@@ -290,6 +298,7 @@
     position: relative;
     margin: 0 10px 0 0;
 }
+
 #uploader .statusBar .progress span.percentage {
     width: 0;
     height: 100%;
@@ -298,6 +307,7 @@
     background: #1483d8;
     position: absolute;
 }
+
 #uploader .statusBar .progress span.text {
     position: relative;
     z-index: 10;
@@ -321,10 +331,7 @@
     float: left;
 }
 
-#uploader .statusBar .btns .webuploader-pick,
-#uploader .statusBar .btns .uploadBtn,
-#uploader .statusBar .btns .uploadBtn.state-uploading,
-#uploader .statusBar .btns .uploadBtn.state-paused {
+#uploader .statusBar .btns .webuploader-pick, #uploader .statusBar .btns .uploadBtn, #uploader .statusBar .btns .uploadBtn.state-uploading, #uploader .statusBar .btns .uploadBtn.state-paused {
     background: #ffffff;
     border: 1px solid #cfcfcf;
     color: #565656;
@@ -336,10 +343,8 @@
     font-size: 14px;
     float: left;
 }
-#uploader .statusBar .btns .webuploader-pick-hover,
-#uploader .statusBar .btns .uploadBtn:hover,
-#uploader .statusBar .btns .uploadBtn.state-uploading:hover,
-#uploader .statusBar .btns .uploadBtn.state-paused:hover {
+
+#uploader .statusBar .btns .webuploader-pick-hover, #uploader .statusBar .btns .uploadBtn:hover, #uploader .statusBar .btns .uploadBtn.state-uploading:hover, #uploader .statusBar .btns .uploadBtn.state-paused:hover {
     background: #f0f0f0;
 }
 
@@ -348,6 +353,7 @@
     color: #fff;
     border-color: transparent;
 }
+
 #uploader .statusBar .btns .uploadBtn:hover {
     background: #00a2d4;
 }
@@ -355,4 +361,49 @@
 #uploader .statusBar .btns .uploadBtn.disabled {
     pointer-events: none;
     opacity: 0.6;
+}
+
+#edit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50px;
+    z-index: -1;
+    visibility: hidden;
+}
+
+#large {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#panel {
+    top: 0;
+    width: 20%;
+    position: relative;
+    height: 100%;
+    background-color: #00b7ee;
+}
+
+#panel h3 {
+    margin: 0 auto;
+}
+
+#panel button {
+    background-color: #ffffff;
+    color: #00b7ee;
+    margin: 0 auto;
+}
+
+.w1 {
+    width: 80%;
+    height: auto;
+    margin: auto 0 auto 0;
+}
+
+.h1 {
+    height: 100%;
+    width: auto;
+    margin: 0 auto 0 auto;
 }

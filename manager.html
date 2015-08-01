@@ -1,50 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>图片管理中心 - 战士之家</title>
-	<link rel="stylesheet" type="text/css" href="public/css/show.css">
-	<link rel="stylesheet" type="text/css" href="public/css/style.css">
-	<link rel="stylesheet" type="text/css" href="public/css/demo.css">
-    <link rel="stylesheet" type="text/css" href="public/css/webuploader.css">
-
-	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="public/js/webuploader.js"></script>
-</head>
-<body>
-<img src="" id="large" class="h" />
-<div id="other"></div>
-<div id="nav">
-    <ul>
-        <li id="pal" class="active"><a href="#">仙剑奇侠传</a></li>
-        <li id="swd"><a href="#">轩辕剑</a></li>
-        <li id="gj"><a href="#">古剑奇谭</a></li>
-    </ul>
-</div>
-
-<div id="uploader" class="wu-example">
-    <div class="queueList">
-        <div id="dndArea" class="placeholder">
-            <div id="filePicker"></div>
-            <p>或将照片拖到这里，单次最多可选300张</p>
+    <head>
+        <meta charset="utf-8">
+        <title>图片管理中心 - 战士之家</title>
+        <link rel="stylesheet" type="text/css" href="public/css/show.css">
+        <link rel="stylesheet" type="text/css" href="public/css/style.css">
+        <link rel="stylesheet" type="text/css" href="public/css/demo.css">
+        <link rel="stylesheet" type="text/css" href="public/css/webuploader.css">
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script type="text/javascript" src="public/js/webuploader.js"></script>
+    </head>
+    <body>
+        <div id="edit">
+            <div id="panel">
+                <h3>照片编辑器</h3>
+                <button type="button">保存图片</button>
+            </div>
+            <img src="" id="large" class="h" />
         </div>
-    </div>
-    <div class="statusBar" style="display:none;">
-        <div class="progress">
-            <span class="text">0%</span>
-            <span class="percentage"></span>
-        </div><div class="info"></div>
-        <div class="btns">
-            <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+        <div id="other"></div>
+        <div id="nav">
+            <ul>
+                <li id="pal" class="active"><a href="#">仙剑奇侠传</a></li>
+                <li id="swd"><a href="#">轩辕剑</a></li>
+                <li id="gj"><a href="#">古剑奇谭</a></li>
+            </ul>
         </div>
-    </div>
-</div>
-
-<ul id="box"></ul>
-<div id="loading">正在加载……</div>
-
-<script type="text/javascript" src="public/js/demo.js"></script>
-<script src="public/js/list.js"></script>
-
-</body>
+        <div id="uploader" class="wu-example">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker"></div>
+                    <p>或将照片拖到这里，单次最多可选300张</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                    </div><div class="info"></div>
+                    <div class="btns">
+                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                    </div>
+                </div>
+            </div>
+        <ul id="box"></ul>
+        <div id="loading">正在加载……</div>
+        <script type="text/javascript" src="public/js/demo.js"></script>
+        <script src="public/js/list.js"></script>
+    </body>
 </html>
