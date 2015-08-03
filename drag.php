@@ -18,5 +18,6 @@
 	elseif (isset($name=$_POST['order'])) {
 		file_put_contents('public/data/list.js', $name);
 	}
-	die('success');	
+	echo('success');
+	die(0);	
 ?>
