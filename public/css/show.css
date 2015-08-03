@@ -42,7 +42,7 @@ body {
     transition: all .7s ease-out .1s;
 }
 
-#box img, #other {
+#box img, #edit {
     -webkit-transition: all .7s ease-out .1s;
     -moz-transition: all .7s ease-out;
     -o-transition: all .7s ease-out .1s;
@@ -71,10 +71,7 @@ body {
     background-color: #00b7ee;
     text-align: center;
     margin-bottom: 10px;
-    z-index: 2;
-}
-
-#nav ul, li {
+    z-index: 10;
     list-style: none;
 }
 
@@ -108,17 +105,13 @@ body {
 #other {
     position: absolute;
     width: 100%;
-    height: 1080px;
-    z-index: -1;
-    opacity: 0;
-    background: #aaa;
+    height: 100%;
+    background: #999999;
+    opacity: 0.5;
 }
 
 #large {
     position: absolute;
-    top: 50px;
-    z-index: -1;
-    visibility: hidden;
 }
 
 .w {
@@ -127,7 +120,42 @@ body {
     height: auto;
 }
 
-.h {
-    height: 90%;
+.w1 {
+    width: 80%;
+    left: 20%;
+    height: auto;
+}
+
+.h1 {
+    height: 100%;
     width: auto;
+}
+
+#edit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50px;
+    z-index: -1;
+    opacity: 0;
+}
+
+#panel {
+    top: 0;
+    width: 20%;
+    position: absolute;
+    height: 100%;
+    background-color: #00b7ee;
+    text-align: center;
+}
+
+#panel h3 {
+    margin: 0 auto;
+    color: #ffffff;
+}
+
+#panel #save {
+    background-color: #ffffff;
+    color: #00b7ee;
+    margin: 0 auto;
 }

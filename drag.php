@@ -15,8 +15,8 @@
 	file_put_contents($srcPath, json_encode($srcData));
 	file_put_contents($dstPath, json_encode($dstData));
 	}
-	elseif (isset($name=$_POST['order'])) {
-		file_put_contents('public/data/list.js', $name);
+	elseif (isset($_POST['order'])) {
+		file_put_contents('public/data/list.js', json_encode($_POST));
 	}
 	echo('success');
 	die(0);	
