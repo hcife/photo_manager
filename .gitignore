@@ -75,6 +75,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # WebStorm project files
-.idea
-.svn
+.idea/*
+.svn/*
 .yaml
