@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            display: block;
+            position: absolute;
+            top: 0;
+        }
+
+        img {
+            width: 328px;
+            height: 328px;
+        }
+    </style>
+</head>
+<body>
+<a id="d" href="display.html" title="展示"><img src="upload_backup\xhjx.png"/></a>
+<a id="m" href="manager.html" title="管理"><img src="upload_backup\bw.png"/></a>
+<script>
+    var d = document.getElementById('d'),
+            m = document.getElementById('m'),
+            l = (document.body.offsetWidth - 800) / 2 + 'px',
+            h = (screen.availHeight - 328) / 2 + 'px';
+    d.style.left = l;
+    d.style.top = m.style.top = h;
+    m.style.right = l;
+</script>
+</body>
+</html>
