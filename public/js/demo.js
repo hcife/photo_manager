@@ -46,6 +46,77 @@ jQuery(function() {
         other = $('#other'),
         windowWidth = document.body.offsetWidth,
         windowHeight = document.body.scrollHeight;
+        //图片分组功能
+    function group(){
+        var num,before,after,ud;
+        var box = $("#box")[0];
+        var li = $("#box li");
+        var pal = $("#pal")[0];
+        var swd = $("#swd")[0];
+        var gj = $("#gj")[0];
+        for( var i = 0;i<li.length;i++ ){
+            li[i].ondragstart = function(e){
+            e.dataTransfer.setData("name",$(this).attr("name"));
+            num = e.dataTransfer.getData("name");
+            before = $(".active").attr("id");
+            }
+        }
+         //第一个标签的事件
+        pal.ondragover = function(e){
+            e.preventDefault();
+            }
+        pal.ondrop = function(e){
+            e.preventDefault();
+            box.removeChild(box.childNodes[num]);
+            after=this.id;
+            ud=true;
+       }
+         //第二个标签的事件
+        swd.ondragover = function(e){
+            e.preventDefault();
+            }
+        swd.ondrop = function(e){
+            e.preventDefault();
+            box.removeChild(box.childNodes[num]);
+            after=this.id;
+            ud=true;
+        }
+        //第三个标签的事件
+        gj.ondragover = function(e){
+            e.preventDefault();
+            }
+        gj.ondrop = function(e){
+            e.preventDefault();
+            box.removeChild(box.childNodes[num]);
+            after=this.id;
+            ud=true;
+        }
+        if(ud==true)myupdate;
+     //拖拽完成发送请求
+    function myupdate(){
+        $.ajax({
+            type: "GET",      
+            async: true,           
+            data: {d:"before",s:"after",id:"num"},
+            url: "../../drag.php",   //发送请求的地址
+            dataType: "jsonp",   //预期服务器返回的数据类型
+            jsonp: "jsoncallback",//在一个 jsonp 请求中重写回调函数的名字
+            success: function(data){
+                order = 0;
+                var option = $(putli).attr("id");
+                var baseUrl = 'public/data/';
+                $('#box').empty();
+                $('#nav li').removeClass('active');
+                $(putli).addClass('active');
+                getData(baseUrl + option + '.js'); 
+              },
+             error: function(){
+              console.log("数据获取失败");
+             }
+         });
+       //请求end
+    }
+    }
     // 当有文件添加进来时执行，负责view的创建
     function addFile(file) {
         var $li = $('<li id="' + file.id + '">' + '<p class="title">' + file.name + '</p>' + '<p class="imgWrap"></p>' + '<p class="progress"><span></span></p>' + '</li>'),
@@ -300,6 +371,7 @@ jQuery(function() {
             }
             li.eq(i).css('opacity', 1);
         }
+        group();
     }
 
     function getarraykey(s, v) {
@@ -314,7 +386,7 @@ jQuery(function() {
         for (var j = 0; j < 50 && order < photo.length; j++, order++) {
             $('#loading').show();
             var url = photo[order].url;
-            var html = '<li><a href="javascript:void(0)"><img src=' + url + ' ></a></li>';
+            var html = '<li name="'+order+'"><a href="javascript:void(0)"><img src=' + url + ' ></a></li>';
             $('#box').append(html);
             $('#box img').css({
                 'width': li_W
@@ -489,4 +561,5 @@ jQuery(function() {
     setTimeout(function() {
         getData('public/data/pal.js');
     }, 200);
+    
 });

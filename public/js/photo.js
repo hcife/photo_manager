@@ -65,7 +65,7 @@ jQuery(function() {
         for (var j = 0; j < 50 && order < photo.length; j++, order++) {
             $('#loading').show();
             var url = photo[order].url;
-            var html = '<li name=' + order + '><a href="javascript:void(0)"><img src=' + url + ' ></a></li>';
+            var html = '<li name="' + order + '" ><a href="javascript:void(0)"><img  src=' + url + ' ></a></li>';
             $('#box').append(html);
             $('#box img').css({
                 'width': li_W
