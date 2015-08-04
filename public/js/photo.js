@@ -62,6 +62,8 @@ jQuery(function() {
     }
 
     function getMore() {
+        if(photo===undefined)
+            return;
         for (var j = 0; j < 50 && order < photo.length; j++, order++) {
             $('#loading').show();
             var url = photo[order].url;

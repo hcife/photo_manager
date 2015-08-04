@@ -80,6 +80,7 @@ $(function() {
             //拖拽完成发送请求
             $.ajax({
                 type: "POST",
+                sync: "true",
                 data: {
                     "order": liname
                 },
@@ -92,7 +93,6 @@ $(function() {
                     $('#box').empty();
                     $('#nav li').removeClass('active');
                     $(putli).addClass('active');
-                    getData(baseUrl + option + '.js');
                 },
                 error: function() {
                     console.log("数据获取失败");
