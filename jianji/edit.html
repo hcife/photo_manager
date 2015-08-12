@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="stylesheet" href="jquery.Jcrop.css">
+        <script src="jquery.min.js"></script>
+        <script src="jquery.Jcrop.js"></script>
+        <script src="jquery.color.js"></script>
+        <script src="jquery.Jcrop.min.js"></script>
+        <style>
+            #p{
+                width: 500px;
+                height: 300px;
+        	}
+        #imgp{
+        /*display: none;*/
+        width: 500px;
+        height: 300px;
+        background: #000;
+        }
+        </style>
+    </head>
+    <body>
+        <img src="laptop_hires.jpg" id="p">
+        <canvas id="imgp"></canvas>
+        <input type="button" value="保存">
+        <input type="button" value="确定" id="qd">
+    </body>
+    <script>
+    // var canvas = document.getElementById("cvs");
+    var canvas=document.getElementById("imgp");
+    var image=document.getElementById("p");
+            jQuery(function($){
+            var jcrop_api;
+            var x1,y1,x2,y2,w,h;
+                $("#p").Jcrop({
+                onChange:showCoords,
+                onSelect:showCoords,
+                onRelease:  clearCoords
+                },function(){
+      				jcrop_api = this;
+   				});
+            });
+            function showCoords(c) {
+            	// var canvas=$("#imgp");
+			    x1=c.x; //得到选中区域左上角横坐标
+			    y1=c.y; //得到选中区域左上角纵坐标
+			    x2=c.x2; //得到选中区域右下角横坐标
+			    y2=c.y2; //得到选中区域右下角纵坐标
+			    w=c.w; //得到选中区域的宽度
+			    h=c.h; //得到选中区域的高度
+			    // drawimgtocav(w,h);
+			}
+			function clearCoords(){
+    			x1=y1=x2=y2=w=h=0;
+  			}
+  			$("#qd").eq(0).click(function(){
+  				// $("#imgp").eq(0).css({width:w});
+			    // $("#imgp").eq(0).css({height:h});
+			    canvas.getContext("2d").drawImage(image,x1,y1,w,h,0,0,w,h);
+  			});
+    </script>
+</html>
