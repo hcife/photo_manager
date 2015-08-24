@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>图片管理中心 - 战士之家</title>
+        <title>管理中心 - HCIFE</title>
         <link rel="stylesheet" type="text/css" href="public/css/show.css">
         <link rel="stylesheet" type="text/css" href="public/css/style.css">
         <link rel="stylesheet" type="text/css" href="public/css/demo.css">
@@ -15,11 +15,22 @@
             <div id="other"></div>
             <div id="panel">
                 <h3>照片编辑器</h3>
-                <div id="save">保存图片</div>
-                <div id="filter"></div>
-                <div id="cut"></div>
+                <div id="save" class="btn">保存图片</div>
+                <div id="filter">
+                    <form>
+                        <input type="radio" name="scheme" value="1" />反色<br />
+                        <input type="radio" name="scheme" value="2" />调色<br />
+                        <input type="radio" name="scheme" value="3" />模糊<br />
+                        <input type="radio" name="scheme" value="4" />浮雕<br />
+                        <input type="radio" name="scheme" value="5" />雕刻<br />
+                        <input type="radio" name="scheme" value="6" />镜像<br />                        
+                    </form>
+                </div>
+                <div id="cut" class="btn">裁剪</div>
+                <div id="exit" class="btn">返回</div>
             </div>
-            <img src="" id="large" class="h1" />
+            <img id="large" class="h1 hide" />
+            <canvas id="draw"></canvas>
         </div>
         <div id="nav">
             <ul>
@@ -47,8 +58,8 @@
             </div>
         <ul id="box"></ul>
         <div id="loading">正在加载……</div>
-        <script type="text/javascript" src="public/js/demo.js"></script>
+        <script src="public/js/filter.js"></script>
+        <script src="public/js/demo.js"></script>
         <script src="public/js/list.js"></script>
-        <script src="public/js/liDrag.js"></script>
     </body>
 </html>

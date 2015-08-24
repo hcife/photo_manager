@@ -110,8 +110,12 @@ body {
     opacity: 0.5;
 }
 
-#large {
+#large,#draw {
     position: absolute;
+}
+#large.hide {
+    opacity: 0;
+    z-index: -1;
 }
 
 .w {
@@ -154,8 +158,20 @@ body {
     color: #ffffff;
 }
 
-#panel #save {
+.btn{
     background-color: #ffffff;
     color: #00b7ee;
     margin: 0 auto;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #00b7ee;
+    color: #ffffff;
+}
+#exit{
+    position: relative;
+    bottom: 0;
+}
+#filter {
+    color: white;
 }

@@ -46,7 +46,8 @@ jQuery(function() {
         other = $('#other'),
         windowWidth = document.body.offsetWidth,
         windowHeight = document.body.scrollHeight,
-        num, before, after;
+        num, before, after,
+        ctx, canvasData;
     //图片分组功能
     // 当有文件添加进来时执行，负责view的创建
     function addFile(file) {
@@ -313,8 +314,7 @@ jQuery(function() {
     }
 
     function getMore() {
-        if(photo===undefined)
-            return;
+        if (photo === undefined) return;
         for (var j = 0; j < 50 && order < photo.length; j++, order++) {
             $('#loading').show();
             var url = photo[order].url;
@@ -337,22 +337,36 @@ jQuery(function() {
 
     function zoom() {
         $('#box img').click(function() {
-            var imageDom = edit.find('img')[0];
+            var imageDom = document.getElementById('large'),
+                draw = document.getElementById('draw');
             imageDom.src = $(this)[0].src;
             setTimeout(function() {
                 var width = imageDom.width,
                     left = windowWidth * 0.6 - width / 2 + 'px';
                 if (imageDom.width < imageDom.height) {
                     imageDom.className = 'h1';
-                    imageDom.style.left = left;
+                    draw.style.left = imageDom.style.left = left;
+                    draw.height = edit[0].clientHeight;
+                    draw.width = imageDom.width;
                 } else {
                     imageDom.style.left = '';
                     imageDom.className = 'w1';
+                    draw.style.left = '20%';
+                    draw.width = 0.8*edit[0].clientWidth;
+                    draw.height = imageDom.height;
                 }
                 edit.css({
                     'top': scrollTop + 50,
                     'z-index': 2,
                     'opacity': 1
+                });
+                edit.queue(function() {
+                    ctx = draw.getContext('2d');
+                    ctx.drawImage(imageDom, 0, 0, draw.width, draw.height);
+                    canvasData = ctx.getImageData(0, 0, draw.width, draw.height);
+                    gfilter.reliefProcess(ctx, canvasData);
+                    ctx.putImageData(canvasData, 0, 0);
+                    $(this).dequeue();
                 });
             }, 100);
         });
@@ -409,23 +423,23 @@ jQuery(function() {
         }
         pal.ondrop = function(e) {
             e.preventDefault();
-                li.eq(num).remove();
-                after = this.id;
-                myupdate();
-                refresh();
-            }
-            //第二个标签的事件
+            li.eq(num).remove();
+            after = this.id;
+            myupdate();
+            refresh();
+        }
+        //第二个标签的事件
         swd.ondragover = function(e) {
             e.preventDefault();
         }
         swd.ondrop = function(e) {
-                e.preventDefault();
-                li.eq(num).remove();
-                after = this.id;
-                myupdate();
-                refresh();
-            }
-            //第三个标签的事件
+            e.preventDefault();
+            li.eq(num).remove();
+            after = this.id;
+            myupdate();
+            refresh();
+        }
+        //第三个标签的事件
         gj.ondragover = function(e) {
             e.preventDefault();
         }
@@ -548,6 +562,12 @@ jQuery(function() {
         adjust();
     });
     other.click(function() {
+        edit.css({
+            'z-index': -1,
+            'opacity': 0
+        });
+    });
+    $('#exit').click(function() {
         edit.css({
             'z-index': -1,
             'opacity': 0
